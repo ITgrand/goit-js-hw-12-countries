@@ -3,20 +3,20 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://ViacheslavSosnovskiy.github.io/goit-js-hw-12-countries",
+  "homepage": "https://ITgrand.github.io/goit-js-hw-12-countries",
   "scripts": {
     "dev": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /goit-js-hw-12-countries/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ViacheslavSosnovskiy/goit-js-hw-12-countries.git"
+    "url": "git+https://github.com/ITgrand/goit-js-hw-12-countries.git"
   },
   "keywords": [],
-  "author": "Viacheslav Sosnovskiy <viacheslav.sosnovskiy@gmail.com>",
+  "author": "Vitalii Dovhopolyk <vitaliidovhopolyk@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ViacheslavSosnovskiy/goit-js-hw-12-countries/issues"
+    "url": "https://github.com/ITgrand/goit-js-hw-12-countriesissues"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
