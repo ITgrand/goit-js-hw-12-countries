@@ -1,7 +1,7 @@
 import './sass/main.scss';
 import fetchCountries from './js/fetchCountries';
-import countryTemplateTpi from './hendelbars/countryCard.hbs';
-import countryListTemplateTpi from './hendelbars/countryList.hbs';
+import countryTemplateTpi from './handebalrs/countryCard.hbs';
+import countryListTemplateTpi from './handebalrs/countryList.hbs';
 import pnotify from './js/pnotify.js';
 
 let debounce = require('lodash.debounce');
