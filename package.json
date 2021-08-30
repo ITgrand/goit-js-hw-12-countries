@@ -16,7 +16,7 @@
   "author": "Vitalii Dovhopolyk <vitaliidovhopolyk@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ITgrand/goit-js-hw-12-countriesissues"
+    "url": "https://github.com/ITgrand/goit-js-hw-12-countries/issues"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
