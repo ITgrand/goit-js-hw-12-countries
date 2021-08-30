@@ -1,57 +1,43 @@
-import './sass/main.scss';
-import fetchCountries from './js/fetchCountries';
-import countryTemplateTpi from './handebalrs/countryCard.hbs';
-import countryListTemplateTpi from './handebalrs/countryList.hbs';
-import pnotify from './js/pnotify.js';
+import fetchCountries from './js/fetchCountries.js';
+import refs from './js/refs.js';
+import templates from './templates/templates.hbs';
+import items from './templates/items.hbs';
+// === pnotify ===
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
+import { error, info, success } from '@pnotify/core';
+// === lodash ===
+const debounce = require('lodash.debounce');
 
-let debounce = require('lodash.debounce');
+refs.input.addEventListener('input', debounce(searchCountries, 500));
 
-const inputEl = document.querySelector('.js-search-form');
-const cardContainerEl = document.querySelector('.js-card-container');
-
-inputEl.addEventListener('input', debounce(onSearch, 500));
-
-function onSearch(e) {
-  e.preventDefault();
-  clearCardContainer();
-  const valInput = e.target.value.trim();
-  fetchCountries(valInput).then(makeRender);
-
-  if (!valInput) {
-    console.log('please enter your country')
+function updateCountriesMarkup(data) {
+  if (data.length === 1) {
+    const markup = templates(data);
+    refs.container.insertAdjacentHTML('beforeend', markup);
+    success({
+      title: 'Success!',
+      text: 'That thing that you were trying to do worked.',
+    });
+  } else if (data.length > 1 && data.length <= 10 && data.length !== 0) {
+    const markup = items(data);
+    refs.container.insertAdjacentHTML('beforeend', markup);
+    info({
+      title: 'New Thing',
+      text: 'Just to let you know, something happened.',
+    });
+  } else {
+    error({
+      title: 'Oh No!',
+      text: 'Something terrible happened.',
+    });
   }
 }
 
-function makeRender(obj) {
-  console.log(`length: ${obj.length}`);
-  if (obj.length === 1) {
-    renderCountryCard(obj);
-    return;
-  }
-  if (obj.length >= 2 && obj.length <= 10) {
-    renderCountryList(obj);
-    return;
-  }
-  if (obj.length > 10) {
-    responseInvalidRequest();
-    return;
-  }
-}
+function searchCountries(country) {
+  country.preventDefault();
 
-function renderCountryCard(country) {
-  const markup = countryTemplateTpi(country);
-  cardContainerEl.innerHTML = markup;
-}
-
-function renderCountryList(country) {
-  const markup = countryListTemplateTpi(country);
-  cardContainerEl.innerHTML = markup;
-}
-
-function responseInvalidRequest() {
-  pnotify('Too many matches found. Please enter a more specific query');
-}
-
-function clearCardContainer() {
-  cardContainerEl.innerHTML = '';
+  const inputValue = country.target.value;
+  refs.container.innerHTML = '';
+  fetchCountries(inputValue).then(updateCountriesMarkup);
 }

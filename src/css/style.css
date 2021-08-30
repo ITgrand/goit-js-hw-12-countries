@@ -1,0 +1,11 @@
+body {
+  background-color: grey;
+}
+
+.main-container {
+  display: flex;
+}
+
+.container {
+  margin-left: 100px;
+}
